@@ -1,4 +1,3 @@
-
 #include <iostream>
 using namespace std;
 
@@ -115,6 +114,24 @@ void exibirElementos()
 	}
 }
 
+void buscarElemento()
+{
+	int digitado;
+
+	cout << "Digite o elemento: ";
+	cin >> digitado;
+	
+	NO* pos = posicaoElemento(digitado);
+
+	if (pos == NULL) {
+		cout << "numero não encontrado\n";
+	}
+	else {
+		cout << "Numero digitado existe na lista\n";
+	}
+}
+
+
 void inserirElemento()
 {
 	// aloca memoria dinamicamente para o novo elemento
@@ -128,9 +145,17 @@ void inserirElemento()
 	cin >> novo->valor;
 	novo->prox = NULL;
 
+	int digitado = novo->valor;
+
+	NO* pos = posicaoElemento(digitado);
+
+
 	if (primeiro == NULL)
 	{
 		primeiro = novo;
+	}
+	else if (pos) {
+		cout << "Esse elemento ja existe\n";
 	}
 	else
 	{
@@ -145,15 +170,26 @@ void inserirElemento()
 
 void excluirElemento()
 {
+	NO* aux = primeiro;
+	int excluir;
+
+	cout << "Por favor digite o numero que deseja excluir: ";
+	cin >> excluir;
+
+	NO* pos = posicaoElemento(excluir);
+
+	if (pos == NULL) {
+		cout << "Não existe o Elemento";
+	}
+	else if(primeiro->valor = excluir) {
+		NO* aux = pos;
+		pos = pos->prox;
+		free(aux);
+	}
 	
+
+
 }
-
-void buscarElemento()
-{
-	
-}
-
-
 
 // retorna um ponteiro para o elemento buscado
 // ou NULL se o elemento não estiver na lista
